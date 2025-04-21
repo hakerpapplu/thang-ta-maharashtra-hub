@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
@@ -8,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, ArrowRight, Trophy, Users, Clock, Filter, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
-// Mock data for tournaments
 const upcomingTournaments = [
   {
     id: 1,
@@ -90,7 +88,6 @@ const pastTournaments = [
   }
 ];
 
-// Tournament Registration Form component
 const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, onClose: () => void }) => {
   const districts = [
     "Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Bhandara", "Buldhana", "Chandrapur", 
@@ -101,9 +98,9 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
   ];
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
+    <div className="bg-white/90 glass-morphism p-6 rounded-xl shadow-2xl">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="font-cinzel text-2xl font-bold text-thangta-dark">Register for {tournament.title}</h3>
+        <h3 className="font-cinzel text-2xl font-bold text-[#075E54]">Register for {tournament.title}</h3>
         <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
           <X className="h-6 w-6" />
         </button>
@@ -115,7 +112,7 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
             <label className="block text-sm font-medium text-gray-700">Full Name</label>
             <input 
               type="text" 
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-thangta focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#30ad8c] focus:border-transparent"
               placeholder="Enter your full name"
               required
             />
@@ -125,7 +122,7 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
             <label className="block text-sm font-medium text-gray-700">Email Address</label>
             <input 
               type="email" 
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-thangta focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#30ad8c] focus:border-transparent"
               placeholder="Enter your email"
               required
             />
@@ -135,7 +132,7 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
             <label className="block text-sm font-medium text-gray-700">Phone Number</label>
             <input 
               type="tel" 
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-thangta focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#30ad8c] focus:border-transparent"
               placeholder="Enter your phone number"
               required
             />
@@ -145,7 +142,7 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
             <label className="block text-sm font-medium text-gray-700">Age</label>
             <input 
               type="number" 
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-thangta focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#30ad8c] focus:border-transparent"
               placeholder="Enter your age"
               min="5"
               max="70"
@@ -154,8 +151,21 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
           </div>
           
           <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700">Weight (kg)</label>
+            <input 
+              type="number"
+              min="10"
+              max="200"
+              step="0.1"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#30ad8c] focus:border-transparent"
+              placeholder="Enter your weight"
+              required
+            />
+          </div>
+          
+          <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700">Gender</label>
-            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-thangta focus:border-transparent" required>
+            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#30ad8c] focus:border-transparent" required>
               <option value="">Select gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -165,7 +175,7 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
           
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700">District</label>
-            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-thangta focus:border-transparent" required>
+            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#30ad8c] focus:border-transparent" required>
               <option value="">Select your district</option>
               {districts.map((district) => (
                 <option key={district} value={district.toLowerCase()}>
@@ -177,7 +187,7 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
           
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700">Experience Level</label>
-            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-thangta focus:border-transparent" required>
+            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#30ad8c] focus:border-transparent" required>
               <option value="">Select experience level</option>
               <option value="beginner">Beginner (0-2 years)</option>
               <option value="intermediate">Intermediate (3-5 years)</option>
@@ -187,7 +197,7 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
           
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700">Category</label>
-            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-thangta focus:border-transparent" required>
+            <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#30ad8c] focus:border-transparent" required>
               <option value="">Select category</option>
               {tournament.categories.map((category: string) => (
                 <option key={category} value={category.toLowerCase()}>
@@ -201,7 +211,7 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
         <div className="space-y-2">
           <label className="block text-sm font-medium text-gray-700">Previous Tournament Experience</label>
           <textarea 
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-thangta focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#30ad8c] focus:border-transparent"
             rows={3}
             placeholder="Briefly describe your previous tournament experience"
           ></textarea>
@@ -210,7 +220,7 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
         <div className="flex items-start space-x-3">
           <input
             type="checkbox"
-            className="mt-1 focus:ring-thangta h-4 w-4 text-thangta border-gray-300 rounded"
+            className="mt-1 focus:ring-[#30ad8c] h-4 w-4 text-[#30ad8c] shrink-0 mt-0.5"
             required
           />
           <label className="text-sm text-gray-700">
@@ -220,7 +230,7 @@ const TournamentRegistrationForm = ({ tournament, onClose }: { tournament: any, 
         
         <div className="flex justify-end space-x-3">
           <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <Button className="bg-thangta hover:bg-thangta-dark">Submit Registration</Button>
+          <Button className="bg-[#075E54] hover:bg-[#075E54]">Submit Registration</Button>
         </div>
       </form>
     </div>
@@ -244,7 +254,6 @@ const Tournaments = () => {
 
   return (
     <MainLayout>
-      {/* Hero Section */}
       <section className="relative bg-thangta-black text-white">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1605810230434-7631ac76ec81')] bg-cover bg-center opacity-30"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
@@ -259,7 +268,6 @@ const Tournaments = () => {
         </div>
       </section>
 
-      {/* Tournaments Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10">
@@ -411,7 +419,6 @@ const Tournaments = () => {
         </div>
       </section>
 
-      {/* Tournament Calendar */}
       <section className="py-16 bg-thangta-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -543,7 +550,6 @@ const Tournaments = () => {
         </div>
       </section>
 
-      {/* Tournament Rules & Guidelines */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -656,7 +662,6 @@ const Tournaments = () => {
         </div>
       </section>
 
-      {/* Registration CTA */}
       <section className="py-16 bg-thangta-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-cinzel text-3xl font-bold mb-4">Ready to Participate?</h2>
