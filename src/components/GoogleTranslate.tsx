@@ -1,47 +1,58 @@
 
 import { useEffect } from "react";
 
-// Instead of attaching types to window, use runtime safe type checking:
+// Declare types for Google Translate API
+declare global {
+  interface Window {
+    google: {
+      translate: {
+        TranslateElement: {
+          new (options: any, element: string): any;
+          InlineLayout: {
+            HORIZONTAL: number;
+          };
+        };
+      };
+    };
+    googleTranslateElementInit: () => void;
+  }
+}
+
+/**
+ * Dynamically loads the Google Translate script and widget.
+ * Adds translator bar (English, Hindi, Marathi).
+ */
 const GoogleTranslate = () => {
   useEffect(() => {
-    // Don't re-run if already present
-    if (window.document.getElementById("google-translate-script")) return;
+    if (window.google && window.google.translate) {
+      window.googleTranslateElementInit();
+      return;
+    }
 
-    // Dynamically create script and global init cb
-    (window as any).googleTranslateElementInit = function () {
-      if (
-        (window as any).google &&
-        (window as any).google.translate &&
-        (window as any).google.translate.TranslateElement
-      ) {
-        new (window as any).google.translate.TranslateElement(
-          {
-            pageLanguage: "en",
-            includedLanguages: "en,hi,mr",
-            layout: (window as any).google.translate.TranslateElement.InlineLayout.HORIZONTAL,
-            autoDisplay: false,
-          },
-          "google_translate_element"
-        );
-      }
+    // Define callback for Google Translate
+    window.googleTranslateElementInit = function () {
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          includedLanguages: "en,hi,mr",
+          layout: window.google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+          autoDisplay: false,
+        },
+        "google_translate_element"
+      );
     };
 
-    // Load Google Translate script once
-    const gtScript = document.createElement("script");
-    gtScript.id = "google-translate-script";
-    gtScript.src =
-      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    gtScript.async = true;
-    document.body.appendChild(gtScript);
-
-    // Cleanup: Remove script on unmount for best mobile handling
-    return () => {
-      gtScript.remove();
-      delete (window as any).googleTranslateElementInit;
-    };
+    // Load script only once
+    const scriptId = "google-translate-script";
+    if (!document.getElementById(scriptId)) {
+      const gtScript = document.createElement("script");
+      gtScript.id = scriptId;
+      gtScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      document.body.appendChild(gtScript);
+    }
   }, []);
 
-  // Ensure widget is always present and sized correctly
+  // The container is very important!
   return (
     <div id="google_translate_element" className="google-translate-widget" />
   );

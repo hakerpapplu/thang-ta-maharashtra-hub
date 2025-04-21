@@ -1,140 +1,83 @@
 
-/* THEME UPDATE: based on your supplied image for a glassy, modern, vibrant sports brand look */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Import Google Fonts - Adjust as needed for your branding */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap');
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap');
 
 :root {
-  --brand-bg: #101726;
-  --brand-card: rgba(24,36,51,0.8);
-  --brand-glass: rgba(255,255,255,0.10);
-  --brand-glass-border: rgba(255,255,255,0.18);
-  --brand-accent: #20e3b2;
-  --brand-accent-dark: #16ad85;
-  --brand-accent2: #6e99ff;
-  --brand-accent3: #f2d463;
-  --brand-danger: #fd5376;
-  --brand-text: #fafafa;
-  --brand-text-secondary: #d5dde7;
-  --brand-shadow: 0 8px 32px 0 rgba(16,24,38,0.15), 0 2px 8px 0 rgba(16,39,54,0.10);
+  --brand-mint: #bcfff6;
+  --brand-mint-dark: #2EC4B6;
+  --brand-mint-light: #AEE8D6;
+  --brand-gold: #D4AF37;
+  --brand-cream: #e7fff9;
+  --brand-text: #134E4A;
+  --brand-black: #000814;
+  --brand-accent: #469887;
 }
 
-html, body {
-  background: var(--brand-bg);
-  min-height: 100vh;
-  color: var(--brand-text);
-  font-family: 'Inter', 'Poppins', 'sans-serif';
-}
-
+/* Glassmorphism and theme, mobile friendly */
 body {
-  background: linear-gradient(120deg,#191e32 80%,#232a43 100%), var(--brand-bg);
+  font-family: 'Poppins', sans-serif;
+  background: var(--brand-mint);
+  color: var(--brand-text);
   min-height: 100vh;
+  margin: 0;
 }
 
-.section-padding {
-  padding-top: 3.5rem;
-  padding-bottom: 3.5rem;
-}
-
-.card-gradient,
 .glass-morphism {
-  background: var(--brand-card);
-  border-radius: 2em;
-  box-shadow: var(--brand-shadow);
-  border: 2.2px solid var(--brand-glass-border);
-  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.6);
+  border-radius: 1.5em;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.08), 0 1.5px 6.5px 0 rgba(0,0,0,0.02);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid #E4F9F6;
 }
 
+/* Gradient text utility */
 .text-gradient-primary {
-  background: linear-gradient(87deg,#20e3b2 20%,#6e99ff 70%,#f5defc 90%);
+  background: linear-gradient(90deg,#1eb89e,#68c6ba 60%,#ffd700 90%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-a, .story-link {
-  color: var(--brand-accent);
-  transition: color .18s;
+.story-link {
+  position: relative;
+  overflow: hidden;
 }
 
-a:hover, .story-link:hover {
-  color: var(--brand-accent2);
-  text-decoration: underline;
-}
-
-button, .btn {
+.story-link::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0;
+  height: 2.5px;
   background: var(--brand-accent);
-  color: #101726;
-  font-weight: 700;
-  border-radius: 2em;
-  padding: 0.75em 2em;
-  transition: background .2s, color .2s, box-shadow .2s;
-  box-shadow: 0 2px 6px 0 rgba(32,227,178,0.05);
-  border: none;
+  border-radius: 1px;
+  transition: width 0.25s;
 }
 
-button:hover, .btn:hover {
-  background: var(--brand-accent-dark);
-  color: #fff;
-}
-
-input,
-select,
-textarea {
-  background: #202a3c;
-  color: var(--brand-text);
-  border-radius: 9px;
-  border: 1.5px solid var(--brand-glass-border);
-  padding: 0.65em 1em;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: var(--brand-accent2);
-  outline: none;
-  background: #222c43;
-}
-
-::-webkit-input-placeholder { color: var(--brand-text-secondary); }
-::-moz-placeholder { color: var(--brand-text-secondary); }
-:-ms-input-placeholder { color: var(--brand-text-secondary); }
-::placeholder { color: var(--brand-text-secondary); }
-
-.navbar-blur {
-  background: var(--brand-card);
-  box-shadow: 0 8px 32px 0 rgba(16,24,38,0.12);
-  border-bottom: 2px solid var(--brand-glass-border);
-  backdrop-filter: blur(24px);
-}
-
-.logo-text {
-  font-family: 'Orbitron', 'Cinzel', 'Inter', sans-serif;
-  font-size: 2rem;
-  font-weight: 900;
-  letter-spacing: 0.07em;
-  color: var(--brand-accent);
-  text-shadow: 0 2px 16px #10172655;
-}
-
-@media (max-width: 600px) {
-  .logo-text { font-size: 1.15rem; }
-  nav { padding: 0.6rem 0.5rem !important; }
-  .section-padding { padding: 2.1rem 0 !important; }
-}
-
-@media (max-width: 860px) {
-  .glass-morphism, .card-gradient { border-radius: 1.3em; }
+.story-link:hover::after,
+.story-link:focus::after {
+  width: 100%;
 }
 
 .google-translate-widget {
-  min-width: 128px;
-  min-height: 32px;
-  background: var(--brand-glass);
-  border-radius: 9px;
-  padding: 1.5px 8px 1.5px 3px;
-  display: inline-block;
+  min-height: 28px;
+  z-index: 60;
 }
 
+.card-gradient {
+  background: linear-gradient(120deg, #e1f8f2 60%, #ffe 100%);
+  border-radius: 22px;
+  box-shadow: 0 2px 8px rgba(30, 186, 158, 0.06);
+}
+
+.section-padding {
+  padding-top: 2.75rem;
+  padding-bottom: 2.75rem;
+}
