@@ -1,6 +1,23 @@
 
 import { useEffect } from "react";
 
+// Declare types for Google Translate API
+declare global {
+  interface Window {
+    google: {
+      translate: {
+        TranslateElement: {
+          new (options: any, element: string): any;
+          InlineLayout: {
+            HORIZONTAL: number;
+          };
+        };
+      };
+    };
+    googleTranslateElementInit: () => void;
+  }
+}
+
 /**
  * Dynamically loads the Google Translate script and widget.
  * Adds translator bar (English, Hindi, Marathi).
